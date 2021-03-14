@@ -19,7 +19,7 @@ payload.Position = 0;
 var readedHeader = handler.Read(jwsDetached, new VerifierResolver(), payload);
 ```
 
-Signer and Verifier implementation for example 
+Signer and Verifier implementation for example
 ```csharp
 class SignerResolver: ISignerResolver
 {
