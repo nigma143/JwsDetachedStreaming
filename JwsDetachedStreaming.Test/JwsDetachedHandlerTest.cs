@@ -22,7 +22,7 @@ namespace JwsDetachedStreaming.Test
             var handler = new JwsDetachedHandler();
 
             payload.Position = 0;
-            var jwsDetached= handler.Write(header, "PS256", new SignerResolver(), payload);
+            var jwsDetached = handler.Write(header, "PS256", new SignerResolver(), payload);
 
             payload.Position = 0;
             header = handler.Read(jwsDetached, new VerifierResolver(), payload);
