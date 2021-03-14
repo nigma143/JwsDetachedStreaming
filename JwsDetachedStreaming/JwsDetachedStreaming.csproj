@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Nullable>enable</Nullable>
+    <Authors>Irek Nigmatullin &lt;nigma143@mail.ru&gt;</Authors>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>detached JWS JSON web detached-payload</PackageTags>
+    <Description>Streaming sign and verify detached JSON Web Signature</Description>
+    <PackageProjectUrl>https://github.com/nigma143/JwsDetachedStreaming</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nigma143/JwsDetachedStreaming</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+</Project>
