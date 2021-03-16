@@ -44,7 +44,7 @@ namespace JwsDetachedStreaming
                 Encoding.UTF8.GetString(encodedSignature));
         }
 
-        public JObject Read(string jwsDetached, IVerifierResolver verifierResolver, Stream payloadStream)
+        public JObject? Read(string jwsDetached, IVerifierResolver verifierResolver, Stream payloadStream)
         {
             var parts = jwsDetached.Split('.');
             if (parts.Length != 3)
@@ -77,7 +77,7 @@ namespace JwsDetachedStreaming
 
             if (!verify)
             {
-                throw new Exception("Invalid signature");
+                return null;
             }
 
             return header;
