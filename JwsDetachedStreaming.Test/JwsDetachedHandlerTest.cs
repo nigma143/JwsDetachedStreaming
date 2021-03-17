@@ -25,9 +25,16 @@ namespace JwsDetachedStreaming.Test
             var jwsDetached = handler.Write(header, "PS256", new SignerResolver(), payload);
 
             payload.Position = 0;
-            header = handler.Read(jwsDetached, new VerifierResolver(), payload);
+            var extractHeader = handler.Read(jwsDetached, new VerifierResolver(), payload);
 
-            Assert.IsTrue(header.GetValue("custom").ToString() == "value");
+            if (extractHeader == null)
+            {
+                Assert.Fail("Invalid signature");
+            }
+            else
+            {
+                Assert.IsTrue(extractHeader.GetValue("custom").ToString() == "value");
+            }
         }
 
         class SignerResolver: ISignerResolver

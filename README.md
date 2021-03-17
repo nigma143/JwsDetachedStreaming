@@ -1,4 +1,5 @@
 [![NuGet version (JwsDetachedStreaming)](https://img.shields.io/nuget/v/JwsDetachedStreaming.svg?style=flat-square)](https://www.nuget.org/packages/JwsDetachedStreaming/)
+[![FuGet version (JwsDetachedStreaming)](https://www.fuget.org/packages/JwsDetachedStreaming/badge.svg)](https://www.fuget.org/packages/JwsDetachedStreaming)
 
 # JwsDetachedStreaming
 

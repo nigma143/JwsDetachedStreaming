@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -22,7 +23,7 @@ namespace JwsDetachedStreaming
                 Encoding.UTF8.GetBytes(
                     header.ToString(Formatting.None)));
 
-            using var encodedPayloadStream = new CryptoStream(
+            using var encodedPayloadStream = new SuppressDisposeExceptionCryptoStream(
                 payloadStream,
                 new ToBase64UrlTransform(),
                 CryptoStreamMode.Read,
@@ -60,7 +61,7 @@ namespace JwsDetachedStreaming
             // part[1] is detached payload
             var signature = Base64UrlEncoder.DecodeFromString(parts[2]);
 
-            using var encodedPayloadStream = new CryptoStream(
+            using var encodedPayloadStream = new SuppressDisposeExceptionCryptoStream(
                 payloadStream,
                 new ToBase64UrlTransform(),
                 CryptoStreamMode.Read,
@@ -81,6 +82,45 @@ namespace JwsDetachedStreaming
             }
 
             return header;
+        }
+    }
+
+    class SuppressDisposeExceptionCryptoStream : CryptoStream
+    {
+        public SuppressDisposeExceptionCryptoStream(Stream stream, ICryptoTransform transform, CryptoStreamMode mode) : base(stream, transform, mode)
+        {
+        }
+
+        public SuppressDisposeExceptionCryptoStream(Stream stream, ICryptoTransform transform, CryptoStreamMode mode, bool leaveOpen) : base(stream, transform, mode, leaveOpen)
+        {
+        }
+
+        public override ValueTask DisposeAsync()
+        {
+            try
+            {
+                return base.DisposeAsync();
+            }
+            catch
+            {
+                // ignored
+                // Inner stream may be throw NotSupportedException at Flush, for example FileBufferingReadStream
+
+                return default;
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            try
+            {
+                base.Dispose(disposing);
+            }
+            catch
+            {
+                // ignored
+                // Inner stream may be throw NotSupportedException at Flush, for example FileBufferingReadStream
+            }
         }
     }
 }
