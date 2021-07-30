@@ -2,8 +2,8 @@
 
 namespace JwsDetachedStreaming
 {
-    public interface ISignerResolver
+    public interface ISignerFactory
     {
-        ISigner Resolve(JObject header);
+        Signer Create(JObject header);
     }
 }

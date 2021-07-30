@@ -11,7 +11,15 @@
     <Description>Streaming sign and verify detached JSON Web Signature</Description>
     <PackageProjectUrl>https://github.com/nigma143/JwsDetachedStreaming</PackageProjectUrl>
     <RepositoryUrl>https://github.com/nigma143/JwsDetachedStreaming</RepositoryUrl>
-    <Version>1.1.1</Version>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
