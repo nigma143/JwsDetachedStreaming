@@ -41,7 +41,7 @@ namespace JwsDetachedStreaming.IO
 
         public static Memory<byte> Decode(ReadOnlySpan<byte> input)
         {
-            var output = new byte[Base64Url.GetMaxDecodedLength(input.Length)+2];
+            var output = new byte[Base64Url.GetMaxDecodedLength(input.Length)];
 
             var result = Base64Url.Decode(input, output, out _, out var bytesWritten);
             if (result != OperationStatus.Done)
