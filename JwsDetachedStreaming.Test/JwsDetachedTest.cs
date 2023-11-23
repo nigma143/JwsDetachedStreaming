@@ -57,7 +57,7 @@ namespace JwsDetachedStreaming.Test
             }
             else
             {
-                Assert.IsTrue(extractHeader.GetValue("custom").ToString() == "value");
+                Assert.IsTrue(extractHeader.GetValue("custom")?.ToString() == "value");
             }
 
             {
@@ -113,7 +113,7 @@ namespace JwsDetachedStreaming.Test
             }
             else
             {
-                Assert.IsTrue(extractHeader.GetValue("custom").ToString() == "value");
+                Assert.IsTrue(extractHeader.GetValue("custom")?.ToString() == "value");
             }
             
             Assert.IsTrue(payload.ToArray().SequenceEqual(slidingPayloadOutput.ToArray()));
@@ -130,7 +130,7 @@ namespace JwsDetachedStreaming.Test
 
             public Signer Create(JObject header)
             {
-                return header.GetValue("alg").ToString() switch
+                return header.GetValue("alg")?.ToString() switch
                 {
                     "PS256" => new SignerPs256(_certificate),
                     _ => throw new NotSupportedException("Signature algorithm not supported")
@@ -192,7 +192,7 @@ namespace JwsDetachedStreaming.Test
 
             public Verifier Create(JObject header)
             {
-                return header.GetValue("alg").ToString() switch
+                return header.GetValue("alg")?.ToString() switch
                 {
                     "PS256" => new VerifierPs256(_certificate),
                     _ => throw new NotSupportedException("Signature algorithm not supported")
