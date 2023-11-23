@@ -14,7 +14,7 @@ namespace JwsDetachedStreaming.Test
         [TestMethod]
         public void EncodeTest()
         {
-            for (var size = 1; size < 4096; size++)
+            for (var size = 0; size < 4096; size++)
             {
                 var payload = RandomGenerator.GenerateRndArray(size);
 
@@ -29,7 +29,7 @@ namespace JwsDetachedStreaming.Test
         [TestMethod]
         public void DecodeTest()
         {
-            for (var size = 1; size < 4096; size++)
+            for (var size = 0; size < 4096; size++)
             {
                 var payload = Microsoft.IdentityModel.Tokens.Base64UrlEncoder.Encode(RandomGenerator.GenerateRndArray(size));
 
@@ -44,7 +44,7 @@ namespace JwsDetachedStreaming.Test
         [TestMethod]
         public void EncodeToStringTest()
         {
-            for (var size = 1; size < 4096; size++)
+            for (var size = 0; size < 4096; size++)
             {
                 var payload = RandomGenerator.RandomString(size);
 
@@ -59,7 +59,7 @@ namespace JwsDetachedStreaming.Test
         [TestMethod]
         public void DecodeToStringTest()
         {
-            for (var size = 1; size < 4096; size++)
+            for (var size = 0; size < 4096; size++)
             {
                 var payload = Microsoft.IdentityModel.Tokens.Base64UrlEncoder.Encode(RandomGenerator.RandomString(size));
 
@@ -74,12 +74,12 @@ namespace JwsDetachedStreaming.Test
         [TestMethod]
         public void PerfComparison()
         {
-            var maxSize = 1024;
+            var maxSize = 10240;
             var iterationCount = 8;
 
             var timer1 = Stopwatch.StartNew();
             
-            for (int size = 1; size < maxSize; size++)
+            for (int size = 0; size < maxSize; size++)
             {
                 for (var iteration = 0; iteration < iterationCount; iteration++)
                 {
@@ -97,7 +97,7 @@ namespace JwsDetachedStreaming.Test
 
             var timer2 = Stopwatch.StartNew();
 
-            for (int size = 1; size < maxSize; size++)
+            for (int size = 0; size < maxSize; size++)
             {
                 for (var iteration = 0; iteration < iterationCount; iteration++)
                 {
