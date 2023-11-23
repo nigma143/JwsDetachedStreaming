@@ -11,6 +11,7 @@
     <Description>Streaming sign and verify detached JSON Web Signature</Description>
     <PackageProjectUrl>https://github.com/nigma143/JwsDetachedStreaming</PackageProjectUrl>
     <RepositoryUrl>https://github.com/nigma143/JwsDetachedStreaming</RepositoryUrl>
+	<PackageReadmeFile>readme.md</PackageReadmeFile>
     <Version>2.0.2</Version>
   </PropertyGroup>
 
@@ -27,6 +28,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+	<None Include="..\readme.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <ItemGroup>
